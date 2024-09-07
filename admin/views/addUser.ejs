@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Đường dẫn CSS -->
+</head>
+<body>
+    <header>
+        <h1>Edit User</h1>
+        <nav>
+            <a href="/users">Back to Users List</a>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Form chỉnh sửa thông tin người dùng -->
+        <form action="/users/<%= user._id %>?_method=PUT" method="POST">
+            <!-- Email người dùng (không thay đổi) -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<%= user.email %>" required>
+            
+            <!-- Mật khẩu mới (không nên hiển thị mật khẩu cũ) -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter new password" required>
+            
+            <!-- Nút submit để cập nhật thông tin -->
+            <button type="submit">Update User</button>
+        </form>
+    </main>
+</body>
+</html>
