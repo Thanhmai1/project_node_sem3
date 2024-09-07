@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="icon" href="/img/quick_snack.png" type="image/png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        header {
+            background-color: #00aaa3;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            color: #fff;
+        }
+        header img {
+            height: 40px;
+            margin-right: 20px;
+        }
+        a {
+            text-decoration: none;     
+            color: #fff;      
+            font-weight: 500;
+            margin: 0 15px;
+        }
+        a:hover {
+            cursor: pointer;
+            color: #03837f;
+            transition: color 0.3s ease;
+        }
+        .content-header {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        .content-header input[type="search"] {
+            border-radius: 20px;
+            border: none;
+            padding: 5px 10px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>                
+        <img src="/img/quick_snack.png" alt="logo">
+        <div class="content-header">
+            <input type="search" placeholder="Search...">
+            <a href="#">Home</a>        
+            <a href="#">Recipe</a>        
+            <a href="#">About Us</a>        
+            <a href="#">Contact</a>        
+            <a href="#" style="margin-left: auto;">Login</a>        
+        </div>
+    </header>
+</body>
+</html>
