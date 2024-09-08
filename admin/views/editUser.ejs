@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="../../public/css/admin.css">
+</head>
+<body>
+    <header>
+        <h1>Edit User</h1>
+        <nav>
+            <a href="/users">Back to Users List</a>
+        </nav>
+    </header>
+    
+    <main>
+        <form action="/users/<%= user._id %>?_method=PUT" method="POST" onsubmit="return validateForm()">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<%= user.email %>" disabled>
+            
+            <label for="oldPassword">Old Password:</label>
+            <input type="password" id="oldPassword" name="oldPassword" placeholder="Enter your old password" minlength="6" maxlength="20">
+            
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" name="password" placeholder="Enter new password" minlength="6" maxlength="20">            
+            
+            <label for="confirmPassword">Confirm New Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password" minlength="6" maxlength="20">
+            
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>Admin</option>
+                <option value="user" <%= user.role === 'user' ? 'selected' : '' %>>User</option>
+            </select>
+            
+            <button type="submit">Update User</button>
+        </form>
+    </main>
+
+    <script>
+    function validateForm() {
+        const oldPassword = document.getElementById('oldPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const role = document.getElementById('role').value;
+
+        if (newPassword.length > 0 && (newPassword.length < 6 || newPassword.length > 20)) {
+            alert('New password must be between 6 and 20 characters long.');
+            return false;
+        }
+
+        if (confirmPassword.length > 0 && newPassword !== confirmPassword) {
+            alert('New password and confirm password do not match.');
+            return false;
+        }
+
+        if (!role) {
+            alert('Please select a role.');
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+</body>
+</html>
