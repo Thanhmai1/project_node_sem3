@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var dishController = require('./controllers/dishController');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -31,6 +32,14 @@ app.use('/header', headerRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+//dish
+app.get('/dishes', dishController.index);
+app.get('/dishes/create', dishController.create);
+app.post('/dishes/store', dishController.store);
+app.get('/dishes/edit/:id', dishController.edit);
+app.post('/dishes/update/:id', dishController.update);
+app.get('/dishes/delete/:id', dishController.remove);
 
 // error handler
 app.use(function(err, req, res, next) {

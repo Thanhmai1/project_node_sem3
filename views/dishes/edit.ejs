@@ -1,0 +1,10 @@
+<h1>Sửa món ăn</h1>
+<form action="/dishes/update/<%= dish._id %>" method="POST">
+    <label>Thumbnail:</label>
+    <input type="text" name="thumbnail" value="<%= dish.thumbnail %>">
+    <label>Title:</label>
+    <input type="text" name="title" value="<%= dish.title %>">
+    <label>Description:</label>
+    <textarea name="description"><%= dish.description %></textarea>
+    <button type="submit">Cập nhật</button>
+</form>

@@ -1,0 +1,11 @@
+<h1>Danh sách món ăn</h1>
+<a href="/dishes/create">Thêm món mới</a>
+<ul>
+    <% dishes.forEach(function(dish) { %>
+        <li>
+            <strong><%= dish.title %></strong> - <%= dish.description %>
+            <a href="/dishes/edit/<%= dish._id %>">Sửa</a>
+            <a href="/dishes/delete/<%= dish._id %>">Xóa</a>
+        </li>
+    <% }) %>
+</ul>
