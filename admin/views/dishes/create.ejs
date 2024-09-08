@@ -1,10 +1,19 @@
-<h1>Thêm món ăn mới</h1>
-<form action="/dishes/store" method="POST">
-    <label>Thumbnail:</label>
-    <input type="text" name="thumbnail">
-    <label>Title:</label>
-    <input type="text" name="title">
-    <label>Description:</label>
-    <textarea name="description"></textarea>
-    <button type="submit">Thêm</button>
-</form>
+<head>
+    <link rel="stylesheet" href="/admin/public/stylesheets/dish.css">
+
+</head>
+<div class="container">
+    <h1>Thêm món ăn mới</h1>
+    <form action="/dish/create" method="POST">
+        <label>Thumbnail:</label>
+        <input type="text" name="thumbnail" required>
+
+        <label>Title:</label>
+        <input type="text" name="title" required>
+
+        <label>Description:</label>
+        <textarea name="description" required></textarea>
+
+        <button type="submit">Thêm</button>
+    </form>
+</div>

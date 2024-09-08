@@ -1,10 +1,19 @@
-<h1>Sửa món ăn</h1>
-<form action="/dishes/update/<%= dish._id %>" method="POST">
-    <label>Thumbnail:</label>
-    <input type="text" name="thumbnail" value="<%= dish.thumbnail %>">
-    <label>Title:</label>
-    <input type="text" name="title" value="<%= dish.title %>">
-    <label>Description:</label>
-    <textarea name="description"><%= dish.description %></textarea>
-    <button type="submit">Cập nhật</button>
-</form>
+<head>
+    <link rel="stylesheet" href="/admin/public/stylesheets/dish.css">
+
+</head>
+<div class="container">
+    <h1>Sửa món ăn</h1>
+    <form action="/dish/edit/<%= dish._id %>?_method=PUT" method="POST">
+        <label>Thumbnail:</label>
+        <input type="text" name="thumbnail" value="<%= dish.thumbnail %>" required>
+        
+        <label>Title:</label>
+        <input type="text" name="title" value="<%= dish.title %>" required>
+        
+        <label>Description:</label>
+        <textarea name="description" required><%= dish.description %></textarea>
+        
+        <button type="submit">Cập nhật</button>
+    </form>
+</div>
