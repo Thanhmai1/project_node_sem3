@@ -54,8 +54,6 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method')); // Hỗ trợ PUT và DELETE
 app.use(express.static(path.join(__dirname, 'public')));
-<<<<<<< HEAD
-=======
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -63,7 +61,6 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dish', dishRouter);
->>>>>>> 0e28d1e8dcba1eeb577a0f47d63fecc95c143711
 
 // Định nghĩa các route
 app.use('/', indexRouter);
