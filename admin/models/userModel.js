@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['admin', 'user'],  // Chỉ cho phép 2 loại role: admin và user
+        enum: ['admin', 'user'], 
         default: 'user'
     },
     createdAt: {
@@ -21,8 +21,6 @@ const userSchema = new mongoose.Schema({
         default: Date.now
     }
 });
-
-// Mã hóa mật khẩu trước khi lưu vào database
 userSchema.pre('save', async function(next) {
     if (!this.isModified('password')) return next();
     const salt = await bcrypt.genSalt(10);
@@ -30,5 +28,5 @@ userSchema.pre('save', async function(next) {
     next();
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('user', userSchema);
 module.exports = User;
