@@ -73,16 +73,13 @@ app.use(function(req, res, next) {
     next(createError(404));
 });
 
-<<<<<<< HEAD
 // Xử lý các lỗi khác
-=======
 app.get('/recipe', (req, res) => {
   res.render('recipe'); // This renders recipe.ejs
 });
 
 
 // error handler
->>>>>>> 0e28d1e8dcba1eeb577a0f47d63fecc95c143711
 app.use(function(err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
