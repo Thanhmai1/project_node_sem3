@@ -40,6 +40,8 @@ app.use(methodOverride('_method')); // Để hỗ trợ PUT và DELETE
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dish', dishRouter);
