@@ -50,6 +50,11 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+app.get('/recipe', (req, res) => {
+  res.render('recipe'); // This renders recipe.ejs
+});
+
+
 // error handler
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
