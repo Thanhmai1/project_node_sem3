@@ -48,18 +48,16 @@ exports.updateDish = async (req, res) => {
     }
 };
 
-// Xóa Dish theo ID
 exports.deleteDish = async (req, res) => {
     try {
         const deletedDish = await Dish.findByIdAndDelete(req.params.id);
         if (!deletedDish) return res.status(404).render('error', { message: 'Dish not found' });
-        res.redirect('/dish'); // Chuyển hướng về trang danh sách sau khi xóa
+        res.redirect('/dish');
     } catch (error) {
         res.status(500).render('error', { message: error.message });
     }
 };
 
-// API endpoints (nếu cần)
 exports.getDishById = async (req, res) => {
     try {
         const dish = await Dish.findById(req.params.id);
