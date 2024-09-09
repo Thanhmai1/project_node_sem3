@@ -55,17 +55,12 @@ exports.deleteDish = async (req, res) => {
     try {
         const deletedDish = await Dish.findByIdAndDelete(req.params.id);
         if (!deletedDish) return res.status(404).render('error', { message: 'Dish not found' });
-<<<<<<< HEAD
         res.redirect('/admin/dish');
-=======
         res.redirect('/dish');
->>>>>>> 0e28d1e8dcba1eeb577a0f47d63fecc95c143711
     } catch (error) {
         res.status(500).render('error', { message: error.message });
     }
 };
-<<<<<<< HEAD
-=======
 
 exports.getDishById = async (req, res) => {
     try {
@@ -76,4 +71,3 @@ exports.getDishById = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
->>>>>>> 0e28d1e8dcba1eeb577a0f47d63fecc95c143711
