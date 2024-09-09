@@ -1,0 +1,23 @@
+<head>
+    <link rel="stylesheet" href="/admin/public/stylesheets/dish.css">
+
+</head>
+<div class="container">
+    <h1>Danh sách món ăn</h1>
+    <a href="/dish/create" class="btn">Thêm món mới</a>
+    <ul>
+        <% dishes.forEach(function(dish) { %>
+            <li>
+                <div>
+                    <strong><%= dish.title %></strong> - <%= dish.description %>
+                </div>
+                <div>
+                    <a href="/dish/edit/<%= dish._id %>" class="btn">Sửa</a>
+                    <form action="/dish/delete/<%= dish._id %>?_method=DELETE" method="POST" class="inline">
+                        <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa món này?');">Xóa</button>
+                    </form>
+                </div>
+            </li>
+        <% }) %>
+    </ul>
+</div>
