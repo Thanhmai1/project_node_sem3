@@ -1,23 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="../../../public/css/dish.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../public/css/admin.css">
+    <title>Admin Dish</title>
 </head>
-<div class="container">
-    <h1>Danh sách món ăn</h1>
-    <a href="/dish/create" class="btn">Thêm món mới</a>
-    <ul>
-        <% dishes.forEach(function(dish) { %>
-            <li>
-                <div>
-                    <strong><%= dish.title %></strong> - <%= dish.description %>
-                </div>
-                <div>
-                    <a href="/dish/edit/<%= dish._id %>" class="btn">Sửa</a>
-                    <form action="/dish/delete/<%= dish._id %>?_method=DELETE" method="POST" class="inline">
-                        <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa món này?');">Xóa</button>
-                    </form>
-                </div>
-            </li>
-        <% }) %>
-    </ul>
-</div>
+<body>
+    <% title = "Admin Dish" %>
+    <%- include('./header_and_footer.ejs') %>    
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% dishes.forEach(dish => { %>
+                <tr>
+                    <td><%= dish._id %></td>
+                    <td><img src="/uploads/<%= dish.image %>" alt="<%= dish.title %>" style="max-width: 100px;"></td>
+                    <td><%= dish.title %></td>
+                    <td><%= dish.description %></td>
+                    <td>
+                        <a href="/admin/dish/edit/<%= dish._id %>">Edit</a>
+                        <button onclick="showModal('<%= dish._id %>')">Delete</button>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <a href="/admin/dish/create">
+        <button style="margin: 20px auto; display: block; width: 200px; text-align: center;">Add New Dish</button>
+    </a>
+
+    <div id="myModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this dish?</p>
+            <button id="confirmDelete">Yes, Delete</button>
+            <button onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+    function showModal(dishId) {
+        document.getElementById('myModal').style.display = 'flex';
+        document.getElementById('confirmDelete').onclick = function() {
+            deleteDish(dishId);
+        };
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    function deleteDish(dishId) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/admin/dish/delete/${dishId}?_method=DELETE`;
+        document.body.appendChild(form);
+        form.submit();
+    }
+    </script>
+</body>
+</html>

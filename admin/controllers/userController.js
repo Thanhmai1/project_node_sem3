@@ -44,7 +44,7 @@ exports.createUser = async (req, res) => {
             role: role || 'user'
         });
         await user.save();
-        res.redirect('/users');
+        res.redirect('/admin/users');
     } catch (err) {
         console.error(err);
         res.status(500).render('500', { msg: 'Server Error' });
@@ -78,7 +78,7 @@ exports.updateUser = async (req, res) => {
         }
         user.role = role || user.role;
         await user.save();
-        res.redirect('/users');
+        res.redirect('/admin/users');
     } catch (err) {
         console.error(err);
         res.status(500).render('500', { msg: 'Server Error' });
@@ -91,7 +91,7 @@ exports.deleteUser = async (req, res) => {
         if (!user) {
             return res.status(404).json({ msg: 'User not found' });
         }
-        res.status(200).redirect('/users');
+        res.status(200).redirect('/admin/users');
     } catch (err) {
         console.error(err);
         res.status(500).json({ msg: 'Server Error' });

@@ -1,19 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="../../../public/css/dish.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin.css">
+    <title>Edit Dish</title>
 </head>
-<div class="container">
-    <h1>Sửa món ăn</h1>
-    <form action="/dish/edit/<%= dish._id %>?_method=PUT" method="POST">
-        <label>Thumbnail:</label>
-        <input type="text" name="thumbnail" value="<%= dish.thumbnail %>" required>
-        
-        <label>Title:</label>
-        <input type="text" name="title" value="<%= dish.title %>" required>
-        
-        <label>Description:</label>
-        <textarea name="description" required><%= dish.description %></textarea>
-        
-        <button type="submit">Cập nhật</button>
-    </form>
-</div>
+<body>
+    <header>
+        <h1>Edit Dish</h1>
+        <nav>
+            <a href="/admin/dish">Back to Dishes List</a>
+        </nav>
+    </header>
+    
+    <main>
+        <form action="/admin/dish/edit/<%= dish._id %>?_method=PUT" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <label for="image">Thumbnail:</label>
+            <input type="file" id="image" name="image">
+            <br>
+            <img src="/uploads/<%= dish.image %>" alt="Dish Image" style="max-width: 200px;">
+            <br>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= dish.title %>" required>
+            <br>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required><%= dish.description %></textarea>
+            <br>
+            <button type="submit">Update</button>
+        </form>
+    </main>
+
+    <script>
+    function validateForm() {
+        const title = document.getElementById('title').value;
+        const description = document.getElementById('description').value;
+
+        if (!title.trim()) {
+            alert('Title cannot be empty.');
+            return false;
+        }
+
+        if (!description.trim()) {
+            alert('Description cannot be empty.');
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+</body>
+</html>
