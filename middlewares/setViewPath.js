@@ -1,8 +1,6 @@
 const path = require('path');
 
-module.exports = function(viewPath) {
-  return function(req, res, next) {
+module.exports = (viewPath) => (req, res, next) => {
     res.locals.viewPath = viewPath;
     next();
-  };
 };
