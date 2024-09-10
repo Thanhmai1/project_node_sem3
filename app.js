@@ -6,7 +6,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var multer = require('multer');
+// var multer = require('multer');
 var setViewPath = require('./middlewares/setViewPath');
 
 const multer = require('multer');
@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
       cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now());
+      cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 const upload = multer({ storage: storage });
@@ -85,7 +85,7 @@ app.use(function(req, res, next) {
 app.get('/recipe', (req, res) => {
   res.render('recipe'); // This renders recipe.ejs
 });
-app.post('/upload', upload.single('image'), (req, res) => {
+app.post('/uploads', upload.single('image'), (req, res) => {
   console.log(req.file);
   console.log(req.body);
   res.redirect('/');

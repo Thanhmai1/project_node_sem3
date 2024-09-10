@@ -11,7 +11,7 @@ const dishSchema = new mongoose.Schema({
         required: [true, 'Description is required'],
         trim: true
     },
-    image: {
+    thumbnail: {
         type: String,
         required: [true, 'Image filename is required'],
         trim: true

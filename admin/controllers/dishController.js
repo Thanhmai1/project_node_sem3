@@ -16,8 +16,8 @@ exports.renderCreateForm = (req, res) => {
 exports.createDish = async (req, res) => {
     try {
         const { title, description } = req.body;
-        const image = req.file ? req.file.filename : '';
-        const newDish = new Dish({ title, description, image });
+        const thumbnail = req.file ? req.file.filename : '';
+        const newDish = new Dish({ title, description, thumbnail });
         await newDish.save();
         res.redirect('/admin/dish');
     } catch (error) {
@@ -38,10 +38,10 @@ exports.renderEditForm = async (req, res) => {
 exports.updateDish = async (req, res) => {
     try {
         const { title, description } = req.body;
-        const image = req.file ? req.file.filename : undefined;
+        const thumbnail = req.file ? req.file.filename : undefined;
         const updatedDish = await Dish.findByIdAndUpdate(
             req.params.id,
-            { title, description, image: image || undefined },
+            { title, description, thumbnail: thumbnail || undefined },
             { new: true }
         );
         if (!updatedDish) return res.status(404).render('error', { message: 'Dish not found' });
