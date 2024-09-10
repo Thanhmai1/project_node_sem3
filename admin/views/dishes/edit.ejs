@@ -6,7 +6,7 @@
     <h1>Sửa món ăn</h1>
     <form action="/dish/edit/<%= dish._id %>?_method=PUT" method="POST">
         <label>Thumbnail:</label>
-        <input type="text" name="thumbnail" value="<%= dish.thumbnail %>" required>
+        <input type="file" name="thumbnail" value="<%= dish.thumbnail %>" required>
         
         <label>Title:</label>
         <input type="text" name="title" value="<%= dish.title %>" required>

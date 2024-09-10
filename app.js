@@ -8,6 +8,17 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var setViewPath = require('./middlewares/setViewPath');
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now());
+  }
+});
+const upload = multer({ storage: storage });
+
 mongoose.connect('mongodb://localhost/admin', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -42,6 +53,8 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dish', dishRouter);
@@ -53,7 +66,11 @@ app.use(function(req, res, next) {
 app.get('/recipe', (req, res) => {
   res.render('recipe'); // This renders recipe.ejs
 });
-
+app.post('/upload', upload.single('image'), (req, res) => {
+  console.log(req.file);
+  console.log(req.body);
+  res.redirect('/');
+});
 
 // error handler
 app.use(function(err, req, res, next) {
